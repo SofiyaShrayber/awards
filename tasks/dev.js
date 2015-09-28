@@ -10,6 +10,7 @@ module.exports = function(grunt) {
 
         grunt.task.run([
             'clean:dev',
+            'preprocess:' + target,
             'compass:' + target,
             'copy:' + target,
 			'connect:dev',

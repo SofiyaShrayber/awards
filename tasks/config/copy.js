@@ -5,7 +5,6 @@ module.exports = {
         dot: true,
         cwd: '<%= project.src %>',
         src: [
-            '**/<%= project.html.files %>',
             '**/<%= project.img.files %>',
             '**/<%= project.js.files %>',
             '**/<%= project.css.files %>',

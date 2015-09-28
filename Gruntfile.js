@@ -50,8 +50,10 @@ module.exports = function(grunt) {
                 files: '{,**/}*.html'
             }
         },
-
         compass: {},
+
+        preprocces: {}
+       
     };
 
     grunt.util._.extend(config, loadConfig('./tasks/config/'));
@@ -59,6 +61,18 @@ module.exports = function(grunt) {
 
     grunt.file.expand('src/*').forEach(function(path) {
         var task = path.replace('src/','');
+
+        config.preprocess[task] = {
+            files: [
+                {
+                    expand: true,
+                    dot: true,
+                    cwd: path,
+                    src: '<%= project.html.files %>',
+                    dest: '<%= project.temp %>'
+                }
+            ]
+        };
  
         config.compass[task] = {
             options: {
@@ -76,7 +90,6 @@ module.exports = function(grunt) {
             dot: true,
             cwd: path,
             src: [
-                '<%= project.html.files %>',
                 '<%= project.img.files %>',
                 '<%= project.js.files %>',
                 '<%= project.css.files %>',
